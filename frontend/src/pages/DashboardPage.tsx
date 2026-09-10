@@ -19,6 +19,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
   const [kpis, setKpis] = useState<any>(null);
   const [charts, setCharts] = useState<any>(null);
   const [rankings, setRankings] = useState<any[]>([]);
+  const [selectedSiteFilter, setSelectedSiteFilter] = useState<string>('ALL');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -61,8 +62,6 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
       </div>
     );
   }
-
-  const [selectedSiteFilter, setSelectedSiteFilter] = useState<string>('ALL');
 
   return (
     <div className="space-y-6">
@@ -362,7 +361,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60">
-              {rankings.map((site) => (
+              {(selectedSiteFilter === 'ALL' 
+                ? rankings 
+                : rankings.filter((s: any) => s.site_name?.toLowerCase().includes(selectedSiteFilter.toLowerCase()))
+              ).map((site) => (
                 <tr key={site.id} className="hover:bg-slate-900/70 transition-colors group">
                   <td className="py-3 px-3.5 font-mono font-black text-amber-400">
                     <span className="w-6 h-6 rounded-md bg-slate-800/80 border border-slate-700/60 flex items-center justify-center inline-block">
