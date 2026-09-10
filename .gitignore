@@ -1,0 +1,28 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+frontend/dist/
+*.local
+
+# SQLite temporary journal
+*.db-journal
+
+# IDEs & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

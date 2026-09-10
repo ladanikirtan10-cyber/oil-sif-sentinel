@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # PostgreSQL database for enterprise production mode
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: oil_sif_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-oil_sif_sentinel}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - oil_sif_net
+
+  # Redis for background queue and caching
+  redis:
+    image: redis:7-alpine
+    container_name: oil_sif_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - oil_sif_net
+
+  # FastAPI AI/NLP Backend
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    container_name: oil_sif_backend
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-oil_sif_sentinel}
+      - SECRET_KEY=${SECRET_KEY:-oil-sif-sentinel-production-secret-key-2026}
+      - DEMO_MODE=true
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - oil_sif_net
+
+  # Next.js / Vite React Enterprise Frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    container_name: oil_sif_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - oil_sif_net
+
+volumes:
+  postgres_data:
+
+networks:
+  oil_sif_net:
+    driver: bridge
