@@ -77,13 +77,13 @@ def retrain_model(db: Session = Depends(get_db)):
             texts.append(r.raw_description)
             labels.append(1 if r.sif_potential else 0)
 
-    # 2. Retrain SIF classifier
-    if texts and len(set(labels)) > 1:
-        sif_classifier.retrain(texts, labels)
-
-    # 3. Create updated model version
+    # 2. Determine new version tag
     count = db.query(ModelVersion).count() + 4
     new_version_tag = f"sif-sentinel-v1.{count}-retrained"
+
+    # 3. Retrain SIF classifier
+    if texts and len(set(labels)) > 1:
+        sif_classifier.retrain(texts, labels, new_version=new_version_tag)
     
     # Deactivate old
     db.query(ModelVersion).update({ModelVersion.is_active: False})

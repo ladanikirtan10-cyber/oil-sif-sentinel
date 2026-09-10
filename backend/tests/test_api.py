@@ -146,3 +146,33 @@ def test_alerts_lifecycle():
     first_id = alerts[0]["id"]
     ack_res = client.post(f"/api/v1/alerts/{first_id}/acknowledge", json={"assigned_to": "Field HSE Lead"})
     assert ack_res.status_code == 200
+
+if __name__ == "__main__":
+    tests = [
+        test_health_check,
+        test_demo_auth_login,
+        test_demo_role_switch,
+        test_dashboard_kpis,
+        test_dashboard_charts,
+        test_reports_list,
+        test_create_and_analyze_report_sih_example,
+        test_precursor_patterns,
+        test_life_saving_rules,
+        test_semantic_search,
+        test_ai_safety_assistant,
+        test_model_metrics_and_retrain,
+        test_alerts_lifecycle
+    ]
+    passed = 0
+    for t in tests:
+        try:
+            t()
+            print(f"PASS: {t.__name__}")
+            passed += 1
+        except Exception as e:
+            print(f"FAIL: {t.__name__} - {e}")
+    print(f"\nResult: {passed}/{len(tests)} tests passed.")
+    if passed == len(tests):
+        sys.exit(0)
+    else:
+        sys.exit(1)

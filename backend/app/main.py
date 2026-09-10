@@ -5,6 +5,7 @@ from app.core.config import settings
 from app.api.v1.api import api_router
 from app.database.session import engine, Base, SessionLocal
 from app.database import models
+from app.ai.sif_classifier import sif_classifier
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -54,4 +55,13 @@ def root():
 
 @app.get("/health")
 def health():
-    return {"status": "healthy", "model_version": settings.MODEL_VERSION}
+    try:
+        from app.database.session import SessionLocal
+        from app.database.models import ModelVersion
+        with SessionLocal() as db_sess:
+            active = db_sess.query(ModelVersion).filter(ModelVersion.is_active == True).order_by(ModelVersion.id.desc()).first()
+            if active:
+                return {"status": "healthy", "model_version": active.version_tag}
+    except Exception:
+        pass
+    return {"status": "healthy", "model_version": sif_classifier.version}

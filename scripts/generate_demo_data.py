@@ -7,6 +7,7 @@ from datetime import datetime, timedelta, timezone
 # Ensure project backend is in path
 sys.path.append(os.path.abspath("backend"))
 
+from sqlalchemy import func
 from app.database.session import SessionLocal, engine, Base
 from app.database.models import (
     User, Site, Department, LifeSavingRule, Report, ReportAnalysis,
@@ -306,10 +307,11 @@ def generate_reports(count: int = 100):
         
         sites = db.query(Site).all()
         now = datetime.now(timezone.utc)
-        
+        max_id = db.query(func.max(Report.id)).scalar() or 0
+
         created_count = 0
         sif_count = 0
-        
+
         for i in range(count):
             tpl = random.choice(SAFETY_INCIDENT_TEMPLATES)
             site = random.choice(sites)
@@ -354,7 +356,7 @@ def generate_reports(count: int = 100):
                 entities=entities
             )
 
-            rep_uid = f"OIL-2026-{1000 + i + 1}"
+            rep_uid = f"OIL-2026-{1000 + max_id + i + 1}"
             report = Report(
                 report_uid=rep_uid,
                 report_type=tpl["type"],

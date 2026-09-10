@@ -162,12 +162,14 @@ class SIFClassifier:
             "top_features": contributions[:8]
         }
 
-    def retrain(self, texts, labels):
+    def retrain(self, texts, labels, new_version=None):
         cleaned_texts = [self._clean_text(t) for t in texts]
         self.vectorizer = TfidfVectorizer(ngram_range=(1, 2), max_features=1000, sublinear_tf=True)
         X = self.vectorizer.fit_transform(cleaned_texts)
         self.model = LogisticRegression(C=2.0, class_weight="balanced", random_state=42)
         self.model.fit(X, labels)
+        if new_version:
+            self.version = new_version
         joblib.dump(self.vectorizer, self.vectorizer_path)
         joblib.dump(self.model, self.model_path)
         return True
