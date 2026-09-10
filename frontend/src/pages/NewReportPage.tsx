@@ -51,6 +51,53 @@ export const NewReportPage: React.FC<NewReportPageProps> = ({ onSuccess, onViewR
     );
   };
 
+  const loadConfinedSpace = () => {
+    setReportType('Unsafe Act');
+    setSiteName('Moran Drilling Field');
+    setDepartmentName('Production');
+    setLocation('Separator Train B');
+    setActivity('Confined Space Entry');
+    setEquipment('Pressure Vessel / Separator');
+    setWorkerRole('Process Operator');
+    setShift('Evening');
+    setContractorInvolved(false);
+    setRawDescription(
+      'Technician entered secondary separator vessel without atmospheric gas testing and without confined space permit. Standby person was absent from manway.'
+    );
+  };
+
+  const loadFallRisk = () => {
+    setReportType('Unsafe Condition');
+    setSiteName('Naharkatiya Gas Station');
+    setDepartmentName('Maintenance');
+    setLocation('Derrick Mast');
+    setActivity('Maintenance');
+    setEquipment('Scaffolding / Working Platform');
+    setWorkerRole('Contract Worker');
+    setShift('Morning');
+    setContractorInvolved(true);
+    setContractorName('Pioneer Industrial Scaffolders');
+    setRawDescription(
+      'Contractor scaffolding crew dismantled working platform at 8 meters elevation without wearing fall arrest harness and safety lifeline was unanchored.'
+    );
+  };
+
+  const loadHotWork = () => {
+    setReportType('Near Miss');
+    setSiteName('KG Basin Offshore Terminal');
+    setDepartmentName('Production');
+    setLocation('Well Pad 14');
+    setActivity('Hot Work');
+    setEquipment('Piping & Manifold');
+    setWorkerRole('Welder / Fabricator');
+    setShift('Night');
+    setContractorInvolved(true);
+    setContractorName('Apex Oilfield Engineering');
+    setRawDescription(
+      'Hot work welding initiated on crude manifold line without gas testing. Hydrocarbon traces detected immediately after sparks were produced; work stopped.'
+    );
+  };
+
   const handleRunAiEvaluation = async () => {
     if (!rawDescription.trim()) {
       alert('Please enter an observation description to analyze.');
@@ -300,22 +347,57 @@ export const NewReportPage: React.FC<NewReportPageProps> = ({ onSuccess, onViewR
               </div>
             </div>
 
-            {/* Free-form Narrative */}
+            {/* Free-form Narrative with Quick Scenario Chips */}
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="block text-[11px] font-bold text-slate-200">
-                  Free-Form Safety Observation Narrative <span className="text-red-400">*</span>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  Free-Form Safety Narrative <span className="text-red-400">*</span>
                 </label>
-                <span className="text-[10px] text-slate-400 font-mono">
-                  {rawDescription.length} characters
+                <span className="text-[10px] text-slate-400 font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+                  {rawDescription.length} chars
                 </span>
               </div>
+
+              {/* 4 Quick Realistic Safety Scenario Chips */}
+              <div className="flex items-center gap-1.5 mb-2.5 flex-wrap">
+                <span className="text-[10px] font-bold text-slate-400 uppercase mr-1">Quick Scenarios:</span>
+                <button
+                  type="button"
+                  onClick={loadSihBenchmark}
+                  className="px-2 py-1 rounded-md text-[10px] font-bold bg-amber-500/15 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition-all flex items-center gap-1"
+                >
+                  <span>⚡ SIH Compressor LOTO</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={loadConfinedSpace}
+                  className="px-2 py-1 rounded-md text-[10px] font-bold bg-sky-500/15 border border-sky-500/40 text-sky-300 hover:bg-sky-500/30 transition-all flex items-center gap-1"
+                >
+                  <span>🛢️ Vessel Confined Space</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={loadFallRisk}
+                  className="px-2 py-1 rounded-md text-[10px] font-bold bg-rose-500/15 border border-rose-500/40 text-rose-300 hover:bg-rose-500/30 transition-all flex items-center gap-1"
+                >
+                  <span>🪜 Derrick Fall Risk</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={loadHotWork}
+                  className="px-2 py-1 rounded-md text-[10px] font-bold bg-orange-500/15 border border-orange-500/40 text-orange-300 hover:bg-orange-500/30 transition-all flex items-center gap-1"
+                >
+                  <span>🔥 Manifold Hot Work</span>
+                </button>
+              </div>
+
               <textarea
                 rows={5}
                 value={rawDescription}
                 onChange={(e) => setRawDescription(e.target.value)}
-                placeholder="Describe what occurred, unsafe conditions observed, equipment status, worker positioning, and barrier failures in natural language (English or Hinglish)..."
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 leading-relaxed font-sans"
+                placeholder="Enter field observation narrative in English or Hinglish (e.g. equipment state, missing barriers, worker positioning, energy isolation, confined space, or high-risk line of fire)..."
+                className="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-400/80 focus:ring-1 focus:ring-amber-400/40 leading-relaxed font-sans shadow-inner transition-all"
               ></textarea>
             </div>
 
@@ -363,12 +445,45 @@ export const NewReportPage: React.FC<NewReportPageProps> = ({ onSuccess, onViewR
               <p className="text-xs text-slate-400">Extracting safety ontologies and scoring precursor risk...</p>
             </div>
           ) : !analysisResult ? (
-            <div className="py-24 text-center text-slate-400 flex flex-col items-center justify-center gap-2">
-              <ShieldAlert className="w-10 h-10 text-slate-600 mb-1" />
-              <div className="text-sm font-semibold text-slate-300">AI Inference Engine Ready</div>
-              <p className="text-xs text-slate-500 max-w-sm">
-                Enter an observation or click "Load SIH Benchmark Scenario", then click "Analyze with AI" to view real-time classification, entity tagging, and explainable rationale.
-              </p>
+            <div className="py-10 px-4 text-center text-slate-400 flex flex-col items-center justify-center gap-4">
+              <div className="relative">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500/20 via-sky-500/20 to-indigo-500/20 border border-amber-400/40 flex items-center justify-center shadow-xl shadow-sky-950/40 glow-gold">
+                  <Sparkles className="w-8 h-8 text-amber-400 animate-pulse" />
+                </div>
+                <span className="absolute -bottom-1 -right-1 flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+              </div>
+
+              <div>
+                <div className="text-sm font-black text-white tracking-wider uppercase flex items-center justify-center gap-2">
+                  <span>AI Neural Inference Core</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-mono">STANDBY</span>
+                </div>
+                <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto leading-relaxed">
+                  Select any quick scenario on the left or write a custom observation, then click <strong className="text-amber-300">"Analyze with AI"</strong> to execute multi-stage NLP inference.
+                </p>
+              </div>
+
+              {/* 3 AI Capabilities Highlights */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full mt-2 text-left">
+                <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 shadow-sm">
+                  <div className="text-[10px] font-black text-amber-400 uppercase">1. SIF Precursor</div>
+                  <div className="text-xs font-bold text-white mt-0.5">Calibrated ML</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">97.2% Recall classifier trained on oilfield corpus</div>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 shadow-sm">
+                  <div className="text-[10px] font-black text-sky-400 uppercase">2. Entity Ontologies</div>
+                  <div className="text-xs font-bold text-white mt-0.5">11 Facet Spans</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">Hazards, barrier failures & equipment extraction</div>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 shadow-sm">
+                  <div className="text-[10px] font-black text-rose-400 uppercase">3. IOGP Rules</div>
+                  <div className="text-xs font-bold text-white mt-0.5">9 Life-Saving Rules</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">Energy Isolation, Line of Fire, Confined Space detection</div>
+                </div>
+              </div>
             </div>
           ) : (
             <div className="space-y-4 overflow-y-auto max-h-[750px] pr-1">
