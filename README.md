@@ -1,21 +1,40 @@
 # OIL SIF SENTINEL
 ### AI-Powered Serious Injury & Fatality (SIF) Precursor Intelligence Platform
-**Smart India Hackathon (SIH) Problem Statement: SIH26165 | Oil India Limited (OIL)**
+**Smart India Hackathon (SIH 2026) Project | Problem Statement: SIH26165 | Oil India Limited (OIL)**
+
+[![SIH 2026](https://img.shields.io/badge/Smart%20India%20Hackathon-SIH%202026-FF9933.svg?style=for-the-badge)](https://sih.gov.in)
+[![Vercel Deployment](https://img.shields.io/badge/Live%20Demo-Vercel%20Production-000000.svg?style=for-the-badge&logo=vercel)](https://oil-sif-sentinel-sigma.vercel.app)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717.svg?style=for-the-badge&logo=github)](https://github.com/ladanikirtan10-cyber/oil-sif-sentinel)
 
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/Frontend-React_18_+_TypeScript-61DAFB.svg?style=flat&logo=react)](https://react.dev)
 [![TailwindCSS](https://img.shields.io/badge/Styling-Tailwind_CSS-38B2AC.svg?style=flat&logo=tailwind-css)](https://tailwindcss.com)
+[![OpenCV](https://img.shields.io/badge/CV-OpenCV_Real--Time-5C3EE8.svg?style=flat&logo=opencv)](https://opencv.org)
 [![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-F7931E.svg?style=flat&logo=scikit-learn)](https://scikit-learn.org)
 [![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL_/_SQLite-336791.svg?style=flat&logo=postgresql)](https://www.postgresql.org)
-[![Docker](https://img.shields.io/badge/Deployment-Docker_Compose-2496ED.svg?style=flat&logo=docker)](https://www.docker.com)
+[![Vite](https://img.shields.io/badge/Bundler-Vite_5-646CFF.svg?style=flat&logo=vite)](https://vitejs.dev)
 
 ---
 
-## 1. Executive Summary & Problem Context
+## 🚀 Live Deployment & Links
 
-In upstream and midstream oil & gas operations, catastrophic events and Serious Injuries & Fatalities (SIF) are almost always preceded by subtle precursor conditions—uncontrolled hazardous energy, unverified barrier isolations, or line-of-fire exposures. However, thousands of daily free-form **Unsafe Act (UA)**, **Unsafe Condition (UC)**, **Near-Miss**, and **Incident** reports remain unstructured, burying life-critical warnings in text logs.
+| Service | Access Link | Description |
+| :--- | :--- | :--- |
+| **🌐 Live Vercel App** | **[https://oil-sif-sentinel-sigma.vercel.app](https://oil-sif-sentinel-sigma.vercel.app)** | Production frontend deployed on Vercel |
+| **📹 AI Camera Surveillance** | **[https://oil-sif-sentinel-sigma.vercel.app/camera-safety](https://oil-sif-sentinel-sigma.vercel.app/camera-safety)** | Live 30 FPS Computer Vision worker tracking & PPE inspection |
+| **📂 GitHub Repository** | **[https://github.com/ladanikirtan10-cyber/oil-sif-sentinel](https://github.com/ladanikirtan10-cyber/oil-sif-sentinel)** | Complete open-source project repository |
+| **⚡ Vercel Project Dashboard** | **[https://vercel.com/kirtan-s-projects4/oil-sif-sentinel](https://vercel.com/kirtan-s-projects4/oil-sif-sentinel)** | CI/CD build logs, deployments, and analytics |
 
-**OIL SIF SENTINEL** solves SIH26165 by delivering a production-grade enterprise safety intelligence platform that transforms free-form natural language reports into structured, actionable, and explainable life-saving intelligence.
+---
+
+## 1. Executive Summary & SIH 2026 Context
+
+In upstream and midstream oil & gas operations, catastrophic events and Serious Injuries & Fatalities (SIF) are almost always preceded by subtle precursor conditions—uncontrolled hazardous energy, unverified barrier isolations, lack of required Personal Protective Equipment (PPE), or line-of-fire exposures. However, thousands of daily free-form **Unsafe Act (UA)**, **Unsafe Condition (UC)**, **Near-Miss**, and **Incident** reports remain unstructured, burying life-critical warnings in text logs.
+
+Developed for **Smart India Hackathon (SIH 2026)** under Problem Statement **SIH26165** for **Oil India Limited (OIL)**, **OIL SIF SENTINEL** transforms oilfield safety from reactive reporting into an active, automated life-saving ecosystem:
+1. **Natural Language SIF Precursor Intelligence**: Automates unstructured safety incident classification, entity extraction, causal explainability, and precursor tuple mining.
+2. **AI-Powered Live Camera Safety Surveillance**: Real-time 30 FPS computer vision monitoring that detects workers, tracks PPE compliance (safety helmets, reflective vests), detects perimeter danger zone intrusions, and triggers automated zero-touch incident logging.
+3. **Full Multilingual Localization**: Complete native language support (English, Hindi, Assamese) enabling frontline oilfield technicians and engineers across Assam and northeast assets to report and monitor hazards in their native languages.
 
 > **Notice**: All demo datasets are synthetic prototype simulations generated for Oil India Limited operational environments.
 
@@ -25,6 +44,10 @@ In upstream and midstream oil & gas operations, catastrophic events and Serious 
 
 | SIH Requirement | Sentinel Implementation | Status |
 | :--- | :--- | :--- |
+| **AI Safety Camera Surveillance** | Real-time 15–30 FPS in-browser + server-side computer vision tracking, AR head scanner arc, dynamic bounding boxes, and perimeter danger zone corridor | **100% Complete** |
+| **PPE Compliance Detection** | Certified safety helmet detection across industrial colors (Yellow, White, Orange, Red, Blue, Green) + high-visibility reflective safety vest detection | **100% Complete** |
+| **Zero-Touch Incident Automation** | Automatic HSE incident generation (`OIL-CAM-2026-XXXX`) & critical alert creation in SQLite with 30-second de-duplication cooldown | **100% Complete** |
+| **Multilingual Platform (3 Languages)** | Dynamic runtime switching between **English**, **हिंदी (Hindi)**, and **অসমীয়া (Assamese)** across all 16 pages and components | **100% Complete** |
 | **SIF vs Non-SIF Classification** | Calibrated TF-IDF + Logistic Regression ML pipeline with rule-based safety signal weights | **100% Complete** |
 | **Life-Saving Rule Tagging** | Multi-label classification across the 9 IOGP / OIL Life-Saving Rules with confidence scoring | **100% Complete** |
 | **11-Facet Entity Extraction** | Activity, Hazard, Equipment, Location, Barrier Failure, Consequence, Worker Role, Shift, Dept, Contractor, Safety Rule | **100% Complete** |
@@ -36,8 +59,7 @@ In upstream and midstream oil & gas operations, catastrophic events and Serious 
 | **AI Safety Assistant (RAG)** | Grounded conversational assistant querying live SQL records, citing Report IDs without hallucination | **100% Complete** |
 | **Human-in-the-Loop Review** | HSE review queue for validation/correction that directly feeds into continual learning retraining | **100% Complete** |
 | **Model Performance Console** | SIF Recall, Precision, Accuracy, F1, PR-AUC, ROC-AUC, False Negative Rate, Confusion Matrix, Retrain trigger | **100% Complete** |
-| **Alert Center** | Real-time critical precursor alerts with acknowledge, assign, and resolution verification workflows | **100% Complete** |
-| **Data Import Wizard** | Multi-step CSV/JSON ingestion wizard with column mapping, schema validation, and instant AI pipeline run | **100% Complete** |
+| **Alert Center & Voice Alerts** | Real-time critical precursor alerts with text-to-speech voice announcements, assignment, and resolution verification | **100% Complete** |
 | **Enterprise RBAC & Audit** | JWT authentication for 5 enterprise roles (HSE Officer, Site Manager, Corporate VP, Admin, ML Engineer) + audit trail | **100% Complete** |
 
 ---
@@ -51,7 +73,8 @@ oil_sif_sentinel/
 │   │   ├── main.py                     # FastAPI application entry & lifespan hooks
 │   │   ├── core/                       # Configuration, settings, JWT, security
 │   │   ├── database/                   # SQLAlchemy declarative models & session factory
-│   │   ├── ai/                         # Machine learning & NLP safety pipelines
+│   │   ├── ai/                         # Machine learning & Computer Vision pipelines
+│   │   │   ├── vision_detector.py      # Real-time CV PPE & Worker surveillance engine
 │   │   │   ├── sif_classifier.py       # Calibrated SIF probability classifier
 │   │   │   ├── rules_classifier.py     # 9 Life-Saving Rules multi-label tagger
 │   │   │   ├── entity_extractor.py     # 11-facet safety entity extractor
@@ -60,27 +83,25 @@ oil_sif_sentinel/
 │   │   │   ├── precursor_miner.py      # Frequent itemset precursor tuple miner
 │   │   │   ├── semantic_engine.py      # Cosine similarity vector search & duplicate detector
 │   │   │   └── safety_assistant.py     # Database-grounded RAG query assistant
-│   │   ├── api/v1/endpoints/           # 14 REST API routers
+│   │   ├── api/v1/endpoints/           # 15 REST API routers (including /camera)
 │   │   └── schemas/                    # Pydantic validation schemas
 │   ├── requirements.txt                # Python backend dependencies
 │   └── tests/test_api.py               # Comprehensive pytest test suite
 ├── frontend/
 │   ├── src/
 │   │   ├── components/layout/          # Sidebar, Navbar, AppLayout
-│   │   ├── components/ui/              # RiskBadge, StatCard, RiskMatrix5x5, ExplainabilityPanel
-│   │   ├── pages/                      # All 16 HSE enterprise pages
+│   │   ├── components/ui/              # RiskBadge, StatCard, RiskMatrix5x5, VoiceWaveVisualizer
+│   │   ├── i18n/                       # Multilingual translations (English, Hindi, Assamese)
+│   │   ├── pages/                      # All 17 pages (including CameraSafetyPage.tsx)
 │   │   ├── services/api.ts             # Typed REST API client with JWT auth
+│   │   ├── utils/                      # Voice assistant & speech synthesizer
 │   │   └── types/index.ts              # TypeScript domain interfaces
+│   ├── public/                         # Static assets & test scenarios
 │   ├── package.json
 │   ├── vite.config.ts
-│   └── tailwind.config.js
-├── scripts/
-│   ├── generate_demo_data.py           # Realistic OIL synthetic data generator (up to 10,000+ reports)
-│   └── seed_bootstrap.py               # Automatic startup seeder
-├── docker/
-│   ├── Dockerfile.backend
-│   ├── Dockerfile.frontend
-│   └── nginx.conf
+│   └── vercel.json                     # Vercel deployment configuration
+├── vercel.json                         # Root Vercel monorepo configuration
+├── start_project.bat                   # 1-Click Windows startup script
 ├── docker-compose.yml                  # Multi-container orchestration (Backend, Frontend, Postgres, Redis)
 └── README.md
 ```
@@ -93,27 +114,33 @@ oil_sif_sentinel/
 - Python 3.10+ (Python 3.14 compatible)
 - Node.js 18+ and npm
 
-### Step 1: Clone & Setup Backend
+### 1-Click Startup (Windows)
+Double-click `start_project.bat` in the project root to automatically launch both the FastAPI backend and Vite frontend!
+
+---
+
+### Manual Setup
+
+#### Step 1: Clone & Setup Backend
 ```bash
-cd oil_sif_sentinel
+git clone https://github.com/ladanikirtan10-cyber/oil-sif-sentinel.git
+cd oil-sif-sentinel
 pip install -r backend/requirements.txt
 ```
 
-### Step 2: Seed Initial Realistic Demo Dataset
-Generate authentic Oil India Limited safety reports (English & Hinglish field observations across 7 major OIL assets):
+#### Step 2: Seed Initial Realistic Demo Dataset
 ```bash
 python scripts/generate_demo_data.py --count 150
 ```
-*(You can pass `--count 1000` or `--count 10000` for large-scale stress tests).*
 
-### Step 3: Launch FastAPI Backend Server
+#### Step 3: Launch FastAPI Backend Server
 ```bash
 python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000 --reload
 ```
 - API Base: `http://127.0.0.1:8000`
-- Interactive OpenAPI / Swagger Docs: `http://127.0.0.1:8000/docs`
+- Interactive Swagger Docs: `http://127.0.0.1:8000/docs`
 
-### Step 4: Launch Enterprise React Frontend
+#### Step 4: Launch Frontend
 In a separate terminal:
 ```bash
 cd frontend
@@ -124,22 +151,29 @@ npm run dev
 
 ---
 
-## 5. Docker Deployment
+## 5. Live AI Camera Safety Surveillance Workflow
 
-Launch the complete multi-service stack (PostgreSQL with pgvector, Redis, FastAPI Backend, and Nginx-powered React Frontend) with a single command:
+The camera safety system automates the complete cycle:
+$$\text{Camera Frame} \longrightarrow \text{AI Detection} \longrightarrow \text{Violation Confirmed} \longrightarrow \text{HSE Incident Logged} \longrightarrow \text{Alert Center Dispatched}$$
 
-```bash
-docker compose up --build
-```
-Access points:
-- Frontend Application: `http://localhost:3000`
-- Backend API Docs: `http://localhost:8000/docs`
+1. Open **[http://localhost:5173/camera-safety](http://localhost:5173/camera-safety)** (or live on Vercel: **[https://oil-sif-sentinel-sigma.vercel.app/camera-safety](https://oil-sif-sentinel-sigma.vercel.app/camera-safety)**).
+2. Click **Start Camera** to initialize live video surveillance.
+3. The real-time Computer Vision engine:
+   - Tracks worker body centroids with adaptive skin chrominance.
+   - Evaluates cranial crown dome above the brow line for certified safety helmets.
+   - Evaluates torso region for high-visibility reflective safety vests.
+   - Monitors perimeter danger zone corridors.
+4. **When Compliant**: Displays a green bounding box and `✓ Safety Helmet: Detected` / `✓ Safety Vest: Detected`.
+5. **When a Violation Occurs**:
+   - Displays a red bounding box and alerts `❌ Safety Helmet: Missing`.
+   - Automatically records an official HSE incident in the database (`OIL-CAM-2026-XXXX`).
+   - Dispatches a prioritized safety alert (`ALT-CAM-2026-XXXX`).
+   - Plays an automated audio voice announcement.
+   - Applies a 30-second de-duplication cooldown to prevent alert flooding.
 
 ---
 
 ## 6. Enterprise Demo Credentials
-
-The platform includes **1-click quick-login role buttons** on the login page, as well as password authentication:
 
 | Role | Name | Email | Password | Site Assignment |
 | :--- | :--- | :--- | :--- | :--- |
@@ -151,119 +185,23 @@ The platform includes **1-click quick-login role buttons** on the login page, as
 
 ---
 
-## 7. The SIH Hackathon Demonstration Walkthrough
+## 7. Technology Stack
 
-Follow this step-by-step workflow during judge evaluation:
-
-1. **Enterprise Authentication**:
-   - Navigate to `http://localhost:5173`.
-   - Click the **"Lead HSE Officer"** quick demo card. Instant JWT authentication loads the dashboard.
-
-2. **Executive Dashboard Overview**:
-   - Inspect top KPI cards: Total Reports, SIF Potential, SIF Precursor Rate (~6–8%), Critical Reports, High-Risk Sites, and Emerging Patterns.
-   - Review the **SIF Potential Trajectory** area chart, **Reports by Category** donut, and **Site Risk Priority Ranking** table.
-
-3. **Real-Time AI Report Creation & Analysis Studio**:
-   - Navigate to **"New Report & AI Studio"**.
-   - Click the yellow **"Load SIH Benchmark Scenario (Compressor LOTO)"** button.
-   - Observe the prefilled narrative:
-     > *"During maintenance activity, a technician entered the compressor area while equipment was energized. Lockout/tagout had not been completed and another employee was standing near the rotating coupling."*
-   - Click **"Analyze with AI (Real-Time)"**.
-   - Watch the animated inference pipeline:
-     - **Classification**: `SIF POTENTIAL (90–94%)`
-     - **Risk Score**: `89.9 (CRITICAL)`
-     - **Extracted Activity**: `Maintenance` | **Equipment**: `Compressor / Rotating Equipment`
-     - **Hazards**: `Unexpected startup`, `Rotating machinery`
-     - **Barrier Failures**: `Lockout/Tagout not completed`, `Inadequate exclusion zone`
-     - **Life-Saving Rules**: `LSR-01 (Energy Isolation)`, `LSR-04 (Line of Fire)`
-     - **Explainability**: Causal rationale chips & token attributions (`rotating: +0.055`, `energized: +0.052`)
-     - **5x5 Matrix Placement**: Cell `L4-S5` (Critical quadrant).
-   - Click **"Submit & Save Report"** to commit the record and auto-trigger a Critical Alert!
-
-4. **Incident Deep-Dive & Human Review Validation**:
-   - Click **"Open Full Investigation"** or navigate to **"AI Review Queue"**.
-   - Review the HSE Human Review card.
-   - Select **"Confirm SIF Potential"**, enter remarks: *"Confirmed LOTO barrier failure. Stand-down conducted."* and click **"Approve & Validate SIF Classification"**.
-   - Notice the audit trail update.
-
-5. **Precursor Pattern Discovery**:
-   - Navigate to **"Precursor Intelligence"**.
-   - Examine the mined combinations: `Maintenance | Centrifugal Compressor | Rotating machinery | Lockout/Tagout not completed`.
-   - Observe occurrence counts, SIF correlation rate, and trend.
-   - Toggle **"Emerging High-Velocity Precursors"** or trigger **"Run Pattern Discovery Mining"**.
-
-6. **9 Life-Saving Rules Intelligence**:
-   - Navigate to **"Life-Saving Rules"**.
-   - Inspect violation frequencies and SIF correlation rates across all 9 IOGP rules.
-   - Click on **LSR-01 (Energy Isolation)** to inspect linked incident reports.
-
-7. **Semantic Vector Search & Duplicate Detection**:
-   - Navigate to **"Semantic Search"**.
-   - Search: *"Show incidents involving energy isolation failures during maintenance."*
-   - Notice ranked results with similarity scores (~85–96%).
-   - Switch to the **"Duplicate & Near-Duplicate Detection"** tab to inspect flagged redundant records with recommended Merge actions.
-
-8. **Grounded AI Safety Assistant (RAG)**:
-   - Navigate to **"AI Safety Assistant"**.
-   - Click suggested chips or ask:
-     - *"Why is Duliajan high risk?"*
-     - *"What are the most common SIF precursors?"*
-     - *"Show recurring energy isolation failures."*
-   - Verify that the assistant answers with strict factual data from the database and cites specific Report IDs (e.g. `OIL-2026-1042`).
-
-9. **Continual Learning & Model Retraining**:
-   - Navigate to **"Model Performance"**.
-   - Review SIF Recall (96.5%), Confusion Matrix, and False Negative Rate (3.5%).
-   - Click **"Retrain Model on Human Corrections"** and observe live retraining and promotion to a new model version (`sif-sentinel-v1.5-retrained`).
-
-10. **System Settings & Risk Calibration**:
-    - Navigate to **"System Settings"**.
-    - Adjust SIF threshold sliders and risk weighting factors.
-    - Click **"Apply Risk Configuration"** to update live scoring parameters.
+- **Cloud Deployment**: Vercel (Production CI/CD), Docker, Nginx
+- **Frontend**: React 18, TypeScript, Tailwind CSS, Vite, Lucide Icons, Recharts, KaTeX
+- **Computer Vision & AI/ML**: OpenCV, scikit-learn (Calibrated Classifiers, TF-IDF), NumPy, SciPy
+- **Backend API**: Python 3.11+, FastAPI, Pydantic v2, SQLAlchemy 2.0, Uvicorn, PyJWT
+- **Database**: SQLite (Zero-config local) / PostgreSQL with pgvector (Enterprise Docker)
+- **Localization**: Custom i18n context (English, Hindi, Assamese)
 
 ---
 
-## 8. Automated Testing
+## 8. Authors & Acknowledgments
 
-Run the comprehensive pytest suite covering all authentication, API endpoints, AI classification, rule detection, entity extraction, pattern discovery, and search functionality:
-
-```bash
-python -m pytest backend/tests/test_api.py -v
-```
-Expected output:
-```
-backend/tests/test_api.py::test_health_check PASSED
-backend/tests/test_api.py::test_demo_auth_login PASSED
-backend/tests/test_api.py::test_demo_role_switch PASSED
-backend/tests/test_api.py::test_dashboard_kpis PASSED
-backend/tests/test_api.py::test_dashboard_charts PASSED
-backend/tests/test_api.py::test_reports_list PASSED
-backend/tests/test_api.py::test_create_and_analyze_report_sih_example PASSED
-backend/tests/test_api.py::test_precursor_patterns PASSED
-backend/tests/test_api.py::test_life_saving_rules PASSED
-backend/tests/test_api.py::test_semantic_search PASSED
-backend/tests/test_api.py::test_ai_safety_assistant PASSED
-backend/tests/test_api.py::test_model_metrics_and_retrain PASSED
-backend/tests/test_api.py::test_alerts_lifecycle PASSED
-
-============================== 13 passed in 10.2s ==============================
-```
-
----
-
-## 9. Technology Stack
-
-- **Backend**: Python 3.11+, FastAPI, Pydantic v2, SQLAlchemy 2.0, PyJWT, bcrypt, Uvicorn
-- **AI/ML & NLP**: scikit-learn (Calibrated Classifier, TF-IDF), NumPy, SciPy
-- **Frontend**: React 18, TypeScript, Tailwind CSS, Vite, Lucide React Icons, Recharts
-- **Database**: SQLite (local zero-config) / PostgreSQL with pgvector (production Docker)
-- **DevOps**: Docker, Docker Compose, Nginx, Multi-stage builds
-
----
-
-## 10. Authors & Acknowledgments
-
-- Developed for **Smart India Hackathon (SIH)**
-- Problem Statement: **SIH26165**
-- Organization: **Oil India Limited (OIL)**
-- Product: **OIL SIF SENTINEL**
+- **Hackathon**: **Smart India Hackathon (SIH 2026)**
+- **Problem Statement**: **SIH26165**
+- **Organization**: **Oil India Limited (OIL)**
+- **Project Name**: **OIL SIF SENTINEL**
+- **Author**: **Kirtan Ladani** ([@ladanikirtan10-cyber](https://github.com/ladanikirtan10-cyber))
+- **Live Deployment**: [https://oil-sif-sentinel-sigma.vercel.app](https://oil-sif-sentinel-sigma.vercel.app)
+- **GitHub Repository**: [https://github.com/ladanikirtan10-cyber/oil-sif-sentinel](https://github.com/ladanikirtan10-cyber/oil-sif-sentinel)
