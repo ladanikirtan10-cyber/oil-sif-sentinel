@@ -16,6 +16,7 @@ import { ModelPerformancePage } from './pages/ModelPerformancePage';
 import { DataImportPage } from './pages/DataImportPage';
 import { UserManagementPage } from './pages/UserManagementPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { CameraSafetyPage } from './pages/CameraSafetyPage';
 import { api } from './services/api';
 import { User } from './types';
 
@@ -116,6 +117,12 @@ export const App: React.FC = () => {
         <ReportsPage
           onSelectReport={handleSelectReport}
           onNewReport={() => setCurrentTab('new-report')}
+        />
+      )}
+      {currentTab === 'camera' && (
+        <CameraSafetyPage
+          onSelectReport={handleSelectReport}
+          onNavigate={handleNavigate}
         />
       )}
       {currentTab === 'new-report' && (

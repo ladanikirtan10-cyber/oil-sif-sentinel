@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Search, Filter, Download, PlusCircle, ChevronLeft, ChevronRight, 
-  Eye, ShieldAlert, AlertTriangle, CheckCircle 
+  Search, Download, PlusCircle, ChevronLeft, ChevronRight, 
+  Eye
 } from 'lucide-react';
 import { api } from '../services/api';
 import { SafetyReport } from '../types';
 import { RiskBadge, SifBadge } from '../components/ui/RiskBadge';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface ReportsPageProps {
   onSelectReport: (reportId: number) => void;
@@ -13,6 +14,7 @@ interface ReportsPageProps {
 }
 
 export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewReport }) => {
+  const { t } = useLanguage();
   const [reports, setReports] = useState<SafetyReport[]>([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
@@ -69,8 +71,8 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
       {/* Header & Actions */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-white tracking-tight">Safety Observations & Incidents Repository</h2>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">Safety Observations & Incidents Repository</h2>
+          <p className="text-xs text-slate-500 mt-0.5 font-medium">
             Comprehensive audit register of Unsafe Acts, Unsafe Conditions, Near Misses, and Process Incidents
           </p>
         </div>
@@ -78,23 +80,23 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
         <div className="flex items-center gap-2.5">
           <button
             onClick={handleExport}
-            className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300 hover:text-white flex items-center gap-1.5 transition-all"
+            className="px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs text-slate-700 font-bold hover:bg-slate-50 flex items-center gap-1.5 transition-all shadow-sm"
           >
-            <Download className="w-3.5 h-3.5" />
+            <Download className="w-3.5 h-3.5 text-slate-500" />
             Export Data
           </button>
           <button
             onClick={onNewReport}
-            className="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md shadow-amber-950/30 transition-all"
+            className="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md shadow-amber-500/25 transition-all"
           >
-            <PlusCircle className="w-4 h-4 text-slate-950" />
+            <PlusCircle className="w-4 h-4 text-white" />
             New Safety Report
           </button>
         </div>
       </div>
 
       {/* Filter Bar */}
-      <div className="p-4 rounded-xl bg-[#0C1222] border border-slate-800 space-y-3">
+      <div className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-3">
         <div className="flex flex-col md:flex-row items-center gap-3">
           {/* Search */}
           <div className="relative flex-1 w-full">
@@ -107,7 +109,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
                 setPage(1);
               }}
               placeholder="Search by Report ID, description, equipment, or location..."
-              className="w-full pl-9 pr-3 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
+              className="w-full pl-9 pr-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white"
             />
           </div>
 
@@ -123,7 +125,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
                 setActivity('ALL');
                 setPage(1);
               }}
-              className="text-xs text-amber-400 hover:underline font-medium flex-shrink-0"
+              className="text-xs text-amber-700 hover:underline font-bold flex-shrink-0"
             >
               Reset Filters
             </button>
@@ -131,11 +133,11 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
         </div>
 
         {/* Dropdown Filters */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 pt-1 border-t border-slate-800/80">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 pt-2 border-t border-slate-100">
           <select
             value={site}
             onChange={(e) => { setSite(e.target.value); setPage(1); }}
-            className="bg-slate-900 border border-slate-700/80 text-xs text-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-sky-500"
+            className="bg-slate-50 border border-slate-300 text-xs text-slate-800 font-medium rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-blue-500 focus:bg-white"
           >
             <option value="ALL">All Oilfield Assets</option>
             <option value="Duliajan">Duliajan Central Field</option>
@@ -150,7 +152,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
           <select
             value={reportType}
             onChange={(e) => { setReportType(e.target.value); setPage(1); }}
-            className="bg-slate-900 border border-slate-700/80 text-xs text-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-sky-500"
+            className="bg-slate-50 border border-slate-300 text-xs text-slate-800 font-medium rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-blue-500 focus:bg-white"
           >
             <option value="ALL">All Observation Types</option>
             <option value="Unsafe Act">Unsafe Act (UA)</option>
@@ -162,7 +164,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
           <select
             value={sifFilter}
             onChange={(e) => { setSifFilter(e.target.value); setPage(1); }}
-            className="bg-slate-900 border border-slate-700/80 text-xs text-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-sky-500"
+            className="bg-slate-50 border border-slate-300 text-xs text-slate-800 font-medium rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-blue-500 focus:bg-white"
           >
             <option value="ALL">SIF Status: All</option>
             <option value="SIF_ONLY">SIF Potential Only (Alerts)</option>
@@ -172,7 +174,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
           <select
             value={severity}
             onChange={(e) => { setSeverity(e.target.value); setPage(1); }}
-            className="bg-slate-900 border border-slate-700/80 text-xs text-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-sky-500"
+            className="bg-slate-50 border border-slate-300 text-xs text-slate-800 font-medium rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-blue-500 focus:bg-white"
           >
             <option value="ALL">All Risk Tiers</option>
             <option value="CRITICAL">Critical (76-100)</option>
@@ -184,7 +186,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
           <select
             value={activity}
             onChange={(e) => { setActivity(e.target.value); setPage(1); }}
-            className="bg-slate-900 border border-slate-700/80 text-xs text-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-sky-500"
+            className="bg-slate-50 border border-slate-300 text-xs text-slate-800 font-medium rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-blue-500 focus:bg-white"
           >
             <option value="ALL">All Activities</option>
             <option value="Maintenance">Maintenance</option>
@@ -199,65 +201,65 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
       </div>
 
       {/* Reports Data Table */}
-      <div className="p-4 rounded-xl bg-[#0C1222] border border-slate-800">
+      <div className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-800 text-[11px] text-slate-400 uppercase tracking-wider">
-                <th className="py-3 px-3">Report ID & Date</th>
-                <th className="py-3 px-3">Asset & Location</th>
-                <th className="py-3 px-3">Activity & Equipment</th>
-                <th className="py-3 px-3">Observation Description</th>
-                <th className="py-3 px-3 text-center">SIF Classification</th>
-                <th className="py-3 px-3 text-center">Risk Tier</th>
-                <th className="py-3 px-3 text-center">Review Status</th>
-                <th className="py-3 px-3 text-right">Action</th>
+              <tr className="border-b border-slate-200 text-[11px] text-slate-500 uppercase tracking-wider bg-slate-50">
+                <th className="py-3 px-3">{t('common.date', 'Report ID & Date')}</th>
+                <th className="py-3 px-3">{t('common.location', 'Asset & Location')}</th>
+                <th className="py-3 px-3">{t('common.activity', 'Activity & Equipment')}</th>
+                <th className="py-3 px-3">{t('newReport.narrativeLabel', 'Observation Description')}</th>
+                <th className="py-3 px-3 text-center">{t('risk.sifPrecursor', 'SIF Classification')}</th>
+                <th className="py-3 px-3 text-center">{t('common.severity', 'Risk Tier')}</th>
+                <th className="py-3 px-3 text-center">{t('common.status', 'Review Status')}</th>
+                <th className="py-3 px-3 text-right">{t('common.actions', 'Action')}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
-                  <td colSpan={8} className="py-12 text-center text-slate-400">
+                  <td colSpan={8} className="py-12 text-center text-slate-500">
                     <div className="flex flex-col items-center justify-center gap-2">
-                      <div className="w-6 h-6 border-2 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
-                      <span>Querying safety repository...</span>
+                      <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                      <span className="font-semibold">Querying safety repository...</span>
                     </div>
                   </td>
                 </tr>
               ) : reports.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="py-12 text-center text-slate-400">
+                  <td colSpan={8} className="py-12 text-center text-slate-500 font-medium">
                     No safety reports matched the selected criteria.
                   </td>
                 </tr>
               ) : (
                 reports.map((report) => (
-                  <tr key={report.id} className="hover:bg-slate-900/50 transition-colors group">
+                  <tr key={report.id} className="hover:bg-slate-50/80 transition-colors group">
                     <td className="py-3 px-3">
-                      <div className="font-mono font-bold text-sky-400 group-hover:underline">
+                      <div className="font-mono font-bold text-blue-600 group-hover:underline">
                         {report.report_uid}
                       </div>
-                      <div className="text-[10px] text-slate-400">
+                      <div className="text-[10px] text-slate-500 font-medium">
                         {new Date(report.date_time).toLocaleDateString()} • {report.shift}
                       </div>
                     </td>
 
                     <td className="py-3 px-3">
-                      <div className="font-semibold text-white">{report.site_name}</div>
-                      <div className="text-[10px] text-slate-400">{report.location}</div>
+                      <div className="font-bold text-slate-900">{report.site_name}</div>
+                      <div className="text-[10px] text-slate-500">{report.location}</div>
                     </td>
 
                     <td className="py-3 px-3">
-                      <div className="font-medium text-slate-200">{report.activity}</div>
-                      <div className="text-[10px] text-slate-400">{report.equipment}</div>
+                      <div className="font-bold text-slate-800">{report.activity}</div>
+                      <div className="text-[10px] text-slate-500 font-medium">{report.equipment}</div>
                     </td>
 
                     <td className="py-3 px-3 max-w-xs">
-                      <p className="text-slate-300 line-clamp-2 leading-relaxed">
+                      <p className="text-slate-700 line-clamp-2 leading-relaxed font-medium">
                         {report.raw_description}
                       </p>
                       {report.contractor_involved && (
-                        <span className="inline-block mt-1 text-[9px] px-1 py-0.2 rounded bg-amber-950/60 text-amber-400 border border-amber-500/30">
+                        <span className="inline-block mt-1 text-[9px] px-1.5 py-0.2 rounded bg-amber-50 text-amber-800 border border-amber-300 font-semibold">
                           Contractor: {report.contractor_name || 'Third-Party'}
                         </span>
                       )}
@@ -270,15 +272,15 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
                     <td className="py-3 px-3 text-center whitespace-nowrap">
                       <div className="flex flex-col items-center gap-0.5">
                         <RiskBadge level={report.severity} size="sm" />
-                        <span className="text-[10px] text-slate-400 font-mono">Score: {report.risk_score}</span>
+                        <span className="text-[10px] text-slate-500 font-mono font-semibold">Score: {report.risk_score}</span>
                       </div>
                     </td>
 
                     <td className="py-3 px-3 text-center">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-semibold ${
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                         report.status === 'Validated'
-                          ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/40'
-                          : 'bg-slate-800 text-slate-400 border border-slate-700'
+                          ? 'bg-emerald-50 text-emerald-800 border border-emerald-300'
+                          : 'bg-slate-100 text-slate-700 border border-slate-200'
                       }`}>
                         {report.status}
                       </span>
@@ -287,7 +289,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
                     <td className="py-3 px-3 text-right whitespace-nowrap">
                       <button
                         onClick={() => onSelectReport(report.id)}
-                        className="px-2.5 py-1 rounded bg-slate-900 hover:bg-sky-600 text-slate-300 hover:text-white border border-slate-700 hover:border-sky-500 text-xs font-semibold transition-all inline-flex items-center gap-1"
+                        className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-600 text-slate-700 hover:text-white border border-slate-300 hover:border-blue-600 text-xs font-bold transition-all inline-flex items-center gap-1 shadow-sm"
                       >
                         <Eye className="w-3.5 h-3.5" />
                         Investigate
@@ -301,24 +303,24 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ onSelectReport, onNewR
         </div>
 
         {/* Pagination Footer */}
-        <div className="flex items-center justify-between pt-4 mt-2 border-t border-slate-800 text-xs text-slate-400">
+        <div className="flex items-center justify-between pt-4 mt-2 border-t border-slate-100 text-xs text-slate-600 font-medium">
           <div>
-            Showing <span className="text-white font-bold">{reports.length}</span> of{' '}
-            <span className="text-white font-bold">{total}</span> recorded reports
+            Showing <span className="text-slate-900 font-bold">{reports.length}</span> of{' '}
+            <span className="text-slate-900 font-bold">{total}</span> recorded reports
           </div>
           <div className="flex items-center gap-2">
             <button
               disabled={page <= 1}
               onClick={() => setPage(p => p - 1)}
-              className="p-1.5 rounded bg-slate-900 border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed text-slate-300 hover:text-white"
+              className="p-1.5 rounded bg-slate-100 border border-slate-300 disabled:opacity-40 disabled:cursor-not-allowed text-slate-700 hover:bg-slate-200 shadow-sm"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="px-2 font-mono text-slate-300">Page {page}</span>
+            <span className="px-2 font-mono text-slate-800 font-bold">Page {page}</span>
             <button
               disabled={page * limit >= total}
               onClick={() => setPage(p => p + 1)}
-              className="p-1.5 rounded bg-slate-900 border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed text-slate-300 hover:text-white"
+              className="p-1.5 rounded bg-slate-100 border border-slate-300 disabled:opacity-40 disabled:cursor-not-allowed text-slate-700 hover:bg-slate-200 shadow-sm"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

@@ -287,4 +287,34 @@ export const api = {
     });
     return res.json();
   },
+
+  // AI Safety Camera
+  async getCameras() {
+    const res = await fetch(`${API_BASE}/camera/cameras`, { headers: getAuthHeaders() });
+    return res.json();
+  },
+
+  async getCameraStats() {
+    const res = await fetch(`${API_BASE}/camera/stats`, { headers: getAuthHeaders() });
+    return res.json();
+  },
+
+  async detectCameraFrame(payload: {
+    image_base64: string;
+    camera_id?: string;
+    camera_name?: string;
+    site_name?: string;
+    location?: string;
+    auto_record?: boolean;
+    danger_zone_active?: boolean;
+  }) {
+    const res = await fetch(`${API_BASE}/camera/detect`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('Camera detection failed');
+    return res.json();
+  },
 };
+

@@ -23,7 +23,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
   children,
 }) => {
   return (
-    <div className="flex min-h-screen bg-[#070B14]">
+    <div className="flex min-h-screen bg-[#F8FAFC] text-slate-900">
       <Sidebar
         currentTab={currentTab}
         onSelectTab={onSelectTab}
@@ -38,7 +38,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
           onOpenAlerts={() => onSelectTab('alerts')}
           onLogout={onLogout}
         />
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className="flex-1 p-6 overflow-y-auto bg-[#F8FAFC]">
           {children}
         </main>
       </div>

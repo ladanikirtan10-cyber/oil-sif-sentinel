@@ -21,36 +21,36 @@ export const StatCard: React.FC<StatCardProps> = ({
   variant = 'default',
 }) => {
   const variantStyles = {
-    default: 'border-slate-800/80 bg-gradient-to-b from-[#0F172A]/90 to-[#0B1120]/95 hover:border-slate-700 shadow-slate-950/50',
-    critical: 'border-red-500/40 bg-gradient-to-b from-red-950/30 via-[#0F172A]/80 to-[#0B1120]/95 hover:border-red-500/70 shadow-red-950/30 glow-critical',
-    warning: 'border-amber-500/40 bg-gradient-to-b from-amber-950/30 via-[#0F172A]/80 to-[#0B1120]/95 hover:border-amber-500/70 shadow-amber-950/30 glow-warning',
-    cyan: 'border-sky-500/40 bg-gradient-to-b from-sky-950/30 via-[#0F172A]/80 to-[#0B1120]/95 hover:border-sky-500/70 shadow-sky-950/30 glow-cyan',
-    emerald: 'border-emerald-500/40 bg-gradient-to-b from-emerald-950/30 via-[#0F172A]/80 to-[#0B1120]/95 hover:border-emerald-500/70 shadow-emerald-950/30 glow-emerald',
+    default: 'border-slate-200 bg-white hover:border-slate-300 shadow-sm',
+    critical: 'border-red-200 bg-gradient-to-b from-red-50/40 via-white to-white hover:border-red-300 shadow-sm glow-critical',
+    warning: 'border-amber-200 bg-gradient-to-b from-amber-50/40 via-white to-white hover:border-amber-300 shadow-sm glow-warning',
+    cyan: 'border-sky-200 bg-gradient-to-b from-sky-50/40 via-white to-white hover:border-sky-300 shadow-sm glow-cyan',
+    emerald: 'border-emerald-200 bg-gradient-to-b from-emerald-50/40 via-white to-white hover:border-emerald-300 shadow-sm glow-emerald',
   };
 
   const iconColors = {
-    default: 'text-slate-300 bg-slate-800/80 border border-slate-700/60 shadow-inner',
-    critical: 'text-red-400 bg-red-950/80 border border-red-500/40 shadow-red-900/30',
-    warning: 'text-amber-400 bg-amber-950/80 border border-amber-500/40 shadow-amber-900/30',
-    cyan: 'text-sky-400 bg-sky-950/80 border border-sky-500/40 shadow-sky-900/30',
-    emerald: 'text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 shadow-emerald-900/30',
+    default: 'text-slate-700 bg-slate-100 border border-slate-200',
+    critical: 'text-red-600 bg-red-100 border border-red-200',
+    warning: 'text-amber-700 bg-amber-100 border border-amber-200',
+    cyan: 'text-sky-600 bg-sky-100 border border-sky-200',
+    emerald: 'text-emerald-700 bg-emerald-100 border border-emerald-200',
   };
 
   const barColors = {
-    default: 'bg-slate-700',
-    critical: 'bg-gradient-to-r from-red-600 to-rose-400',
-    warning: 'bg-gradient-to-r from-amber-500 to-orange-400',
-    cyan: 'bg-gradient-to-r from-sky-500 to-cyan-300',
-    emerald: 'bg-gradient-to-r from-emerald-500 to-teal-300',
+    default: 'bg-slate-400',
+    critical: 'bg-gradient-to-r from-red-600 to-rose-500',
+    warning: 'bg-gradient-to-r from-amber-500 to-orange-500',
+    cyan: 'bg-gradient-to-r from-sky-500 to-blue-500',
+    emerald: 'bg-gradient-to-r from-emerald-500 to-teal-500',
   };
 
   return (
-    <div className={`p-4 rounded-xl border transition-all duration-200 shadow-lg hover:-translate-y-0.5 hover:shadow-xl relative overflow-hidden group ${variantStyles[variant]}`}>
+    <div className={`p-4 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md relative overflow-hidden group ${variantStyles[variant]}`}>
       {/* Top subtle highlight */}
-      <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
       <div className="flex items-center justify-between mb-2.5">
-        <span className="text-[11px] font-bold text-slate-400 tracking-wider uppercase flex items-center gap-1.5">
+        <span className="text-[11px] font-bold text-slate-500 tracking-wider uppercase flex items-center gap-1.5">
           {variant === 'critical' && <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />}
           {title}
         </span>
@@ -60,10 +60,10 @@ export const StatCard: React.FC<StatCardProps> = ({
       </div>
 
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-2xl font-extrabold tracking-tight text-white font-mono-nums">{value}</span>
+        <span className="text-2xl font-black tracking-tight text-slate-900 font-mono-nums">{value}</span>
         {change && (
           <span className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-bold ${
-            isPositive ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-500/30' : 'bg-amber-950/60 text-amber-400 border border-amber-500/30'
+            isPositive ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'
           }`}>
             {isPositive ? <TrendingUp className="w-2.5 h-2.5" /> : <TrendingDown className="w-2.5 h-2.5" />}
             {change}
@@ -72,11 +72,11 @@ export const StatCard: React.FC<StatCardProps> = ({
       </div>
 
       {subtitle && (
-        <p className="text-[11px] text-slate-400 mt-1 font-medium truncate">{subtitle}</p>
+        <p className="text-[11px] text-slate-500 mt-1 font-medium truncate">{subtitle}</p>
       )}
 
       {/* Mini bottom activity bar */}
-      <div className="w-full bg-slate-800/60 h-1 rounded-full mt-3 overflow-hidden">
+      <div className="w-full bg-slate-100 h-1.5 rounded-full mt-3 overflow-hidden">
         <div className={`h-full rounded-full transition-all duration-500 ${barColors[variant]}`} style={{ width: variant === 'critical' ? '82%' : variant === 'warning' ? '68%' : '90%' }} />
       </div>
     </div>

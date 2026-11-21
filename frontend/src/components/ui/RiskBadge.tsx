@@ -1,5 +1,6 @@
 import React from 'react';
 import { AlertOctagon, AlertTriangle, CheckCircle, ShieldAlert, Zap } from 'lucide-react';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 interface RiskBadgeProps {
   level: string;
@@ -8,6 +9,7 @@ interface RiskBadgeProps {
 }
 
 export const RiskBadge: React.FC<RiskBadgeProps> = ({ level, score, size = 'md' }) => {
+  const { t } = useLanguage();
   const normalized = (level || 'MODERATE').toUpperCase();
   
   const sizeClasses = {
@@ -18,43 +20,43 @@ export const RiskBadge: React.FC<RiskBadgeProps> = ({ level, score, size = 'md' 
 
   if (normalized === 'CRITICAL') {
     return (
-      <span className={`inline-flex items-center rounded-md font-extrabold tracking-wider bg-red-950/80 text-red-300 border border-red-500/70 shadow-sm shadow-red-950/60 ${sizeClasses[size]}`}>
+      <span className={`inline-flex items-center rounded-md font-extrabold tracking-wider bg-red-50 text-red-700 border border-red-300 shadow-sm shadow-red-100 ${sizeClasses[size]}`}>
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
         </span>
-        <AlertOctagon className="w-3.5 h-3.5 text-red-400" />
-        <span>CRITICAL</span>
-        {score !== undefined && <span className="text-red-400/80 font-mono text-[10px]">({Math.round(score)})</span>}
+        <AlertOctagon className="w-3.5 h-3.5 text-red-600" />
+        <span>{t('risk.critical', 'CRITICAL')}</span>
+        {score !== undefined && <span className="text-red-700/80 font-mono text-[10px] font-bold">({Math.round(score)})</span>}
       </span>
     );
   }
   if (normalized === 'HIGH') {
     return (
-      <span className={`inline-flex items-center rounded-md font-bold tracking-wider bg-amber-950/80 text-amber-300 border border-amber-500/70 shadow-sm shadow-amber-950/60 ${sizeClasses[size]}`}>
-        <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-        <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
-        <span>HIGH</span>
-        {score !== undefined && <span className="text-amber-400/80 font-mono text-[10px]">({Math.round(score)})</span>}
+      <span className={`inline-flex items-center rounded-md font-bold tracking-wider bg-amber-50 text-amber-800 border border-amber-300 shadow-sm shadow-amber-100 ${sizeClasses[size]}`}>
+        <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+        <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
+        <span>{t('risk.high', 'HIGH')}</span>
+        {score !== undefined && <span className="text-amber-800/80 font-mono text-[10px] font-bold">({Math.round(score)})</span>}
       </span>
     );
   }
   if (normalized === 'MODERATE') {
     return (
-      <span className={`inline-flex items-center rounded-md font-semibold tracking-wider bg-yellow-950/60 text-yellow-300 border border-yellow-500/50 ${sizeClasses[size]}`}>
-        <span className="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
-        <ShieldAlert className="w-3.5 h-3.5 text-yellow-300" />
-        <span>MODERATE</span>
-        {score !== undefined && <span className="text-yellow-300/80 font-mono text-[10px]">({Math.round(score)})</span>}
+      <span className={`inline-flex items-center rounded-md font-semibold tracking-wider bg-yellow-50 text-yellow-800 border border-yellow-300 shadow-sm shadow-yellow-100 ${sizeClasses[size]}`}>
+        <span className="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+        <ShieldAlert className="w-3.5 h-3.5 text-yellow-700" />
+        <span>{t('risk.moderate', 'MODERATE')}</span>
+        {score !== undefined && <span className="text-yellow-800/80 font-mono text-[10px]">({Math.round(score)})</span>}
       </span>
     );
   }
   return (
-    <span className={`inline-flex items-center rounded-md font-semibold tracking-wider bg-emerald-950/70 text-emerald-300 border border-emerald-500/50 ${sizeClasses[size]}`}>
-      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-      <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-      <span>LOW RISK</span>
-      {score !== undefined && <span className="text-emerald-400/80 font-mono text-[10px]">({Math.round(score)})</span>}
+    <span className={`inline-flex items-center rounded-md font-semibold tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-sm shadow-emerald-100 ${sizeClasses[size]}`}>
+      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+      <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+      <span>{t('risk.low', 'LOW RISK')}</span>
+      {score !== undefined && <span className="text-emerald-800/80 font-mono text-[10px]">({Math.round(score)})</span>}
     </span>
   );
 };
@@ -64,6 +66,7 @@ export const SifBadge: React.FC<{ isSif: boolean; probability?: number; size?: '
   probability,
   size = 'md',
 }) => {
+  const { t } = useLanguage();
   const sizeClasses = {
     sm: 'px-2 py-0.5 text-[10px] gap-1',
     md: 'px-2.5 py-1 text-xs font-bold gap-1.5',
@@ -72,15 +75,15 @@ export const SifBadge: React.FC<{ isSif: boolean; probability?: number; size?: '
 
   if (isSif) {
     return (
-      <span className={`inline-flex items-center rounded-md bg-gradient-to-r from-red-600/25 via-rose-600/20 to-red-600/25 text-rose-300 border border-red-500/70 shadow-md shadow-red-950/50 ${sizeClasses[size]}`}>
+      <span className={`inline-flex items-center rounded-md bg-gradient-to-r from-red-50 via-rose-50 to-red-50 text-rose-700 border border-rose-300 shadow-sm shadow-red-100 ${sizeClasses[size]}`}>
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600"></span>
         </span>
-        <Zap className="w-3.5 h-3.5 text-rose-400 fill-rose-400" />
-        <span className="tracking-wide uppercase">SIF Precursor</span>
+        <Zap className="w-3.5 h-3.5 text-rose-600 fill-rose-600" />
+        <span className="tracking-wide uppercase font-extrabold">{t('risk.sifPrecursor', 'SIF Precursor')}</span>
         {probability !== undefined && (
-          <span className="font-mono bg-red-900/60 px-1 py-0.2 rounded text-[10px] text-red-200 border border-red-700/50">
+          <span className="font-mono bg-rose-100 px-1 py-0.2 rounded text-[10px] text-rose-800 font-bold border border-rose-200">
             {Math.round(probability * 100)}%
           </span>
         )}
@@ -88,11 +91,11 @@ export const SifBadge: React.FC<{ isSif: boolean; probability?: number; size?: '
     );
   }
   return (
-    <span className={`inline-flex items-center rounded-md bg-slate-900/90 text-slate-300 border border-slate-700/80 ${sizeClasses[size]}`}>
-      <span className="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-      <span className="tracking-wide uppercase text-slate-400">Non-SIF</span>
+    <span className={`inline-flex items-center rounded-md bg-slate-100 text-slate-700 border border-slate-200 ${sizeClasses[size]}`}>
+      <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+      <span className="tracking-wide uppercase text-slate-600 font-semibold">{t('risk.nonSif', 'Non-SIF')}</span>
       {probability !== undefined && (
-        <span className="font-mono text-[10px] text-slate-400">({Math.round(probability * 100)}%)</span>
+        <span className="font-mono text-[10px] text-slate-500 font-semibold">({Math.round(probability * 100)}%)</span>
       )}
     </span>
   );
